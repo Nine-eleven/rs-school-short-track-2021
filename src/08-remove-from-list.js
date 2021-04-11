@@ -17,7 +17,7 @@
  * }
  */
 
- function removeKFromList(l, k) {
+function removeKFromList(l, k) {
   let list = l;
   while (list) {
     if (list.value === k) {
@@ -41,6 +41,5 @@
   }
   return list;
 }
-
 
 module.exports = removeKFromList;
