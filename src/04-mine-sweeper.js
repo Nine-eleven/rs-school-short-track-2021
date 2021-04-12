@@ -21,29 +21,43 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(matrix) {
-  const resultMatrix = matrix;
-  const lengthStr = matrix[0].length;
-  const lengthMatrix = matrix.length;
 
-  for (let i = 0; i < lengthMatrix; i++) {
-    for (let j = 0; j < lengthStr; j++) {
-      resultMatrix[i][j] = 0;
-      if (matrix[i][j + 1]) { resultMatrix[i][j]++; }
-      if (matrix[i + 1][j + 1]) { resultMatrix[i][j]++; }
-      if (i < lengthMatrix.length - 1 && matrix[i + 1][j]) { resultMatrix[i][j]++; }
-      if (j > 0 && i < lengthMatrix.length - 1 && matrix[i + 1][j - 1]) {
-        resultMatrix[i][j]++;
+function minesweeper(matrix) {
+  const resultMatrix = [];
+  const matrixLength = matrix.length;
+  const strLength = matrix[0].length;
+
+  for (let i = 0; i < matrixLength; i++) {
+    const arrStr = [];
+    for (let j = 0; j < strLength; j++) {
+      let numberTrue = 0;
+      if (i !== 0 && j !== 0) {
+        if (matrix[i - 1][j - 1]) numberTrue += 1;
       }
-      if (j > 0 && i >= 0 && matrix[i][j - 1]) { resultMatrix[i][j]++; }
-      if (j > 0 && i > 0 && matrix[i - 1][j - 1]) {
-        resultMatrix[i][j]++;
+      if (i !== 0) {
+        if (matrix[i - 1][j]) numberTrue += 1;
       }
-      if (j >= 0 && i > 0 && matrix[i - 1][j]) { resultMatrix[i][j]++; }
-      if (j >= 0 && i > 0 && matrix[i - 1][j + 1]) {
-        resultMatrix[i][j]++;
+      if (j !== 0) {
+        if (matrix[i][j - 1]) numberTrue += 1;
       }
+      if (i !== matrixLength - 1) {
+        if (matrix[i + 1][j]) numberTrue += 1;
+      }
+      if (j !== strLength - 1) {
+        if (matrix[i][j + 1]) numberTrue += 1;
+      }
+      if ((i !== matrixLength - 1) && (j !== strLength - 1)) {
+        if (matrix[i + 1][j + 1]) numberTrue += 1;
+      }
+      if ((i !== matrixLength - 1) && j !== 0) {
+        if (matrix[i + 1][j - 1]) numberTrue += 1;
+      }
+      if ((j !== strLength - 1) && i !== 0) {
+        if (matrix[i - 1][j + 1]) numberTrue += 1;
+      }
+      arrStr.push(numberTrue);
     }
+    resultMatrix.push(arrStr);
   }
   return resultMatrix;
 }
