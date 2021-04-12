@@ -11,16 +11,20 @@
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new Error('Not implemented');
+  constructor() {
+    this.name = [];
   }
 
-  pop() {
-    throw new Error('Not implemented');
+  push(element) {
+    this.name.push(element);
+  }
+
+  pop() { // Возвращает верхний элемент. т.е. последний добавленный
+    return this.name.pop();
   }
 
   peek() {
-    throw new Error('Not implemented');
+    return this.name[this.name.length - 1];
   }
 }
 
